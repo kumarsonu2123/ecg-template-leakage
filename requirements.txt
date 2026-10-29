@@ -1,0 +1,12 @@
+# Tested on Google Colab (Python 3.13, PyTorch 2.11, CUDA, Tesla T4)
+numpy
+pandas
+scipy
+scikit-learn
+torch
+matplotlib
+pyyaml
+wfdb
+neurokit2
+h5py
+tqdm

@@ -1,0 +1,41 @@
+# Single source of truth for paths, preprocessing, model, training, leakage and statistics settings.
+data:
+  version: 1.0.3
+  raw_dir: /content/drive/MyDrive/PTB-XL
+  local_dir: /content/ptbxl
+  fs: 500
+  record_seconds: 10
+  lead: I
+  expected_records: 21799
+  expected_patients: 18869
+qc:
+  flat_std_mv: 0.01
+  min_beats: 4
+  max_beats: 35
+cohorts:
+  min_records_identity: 2
+  identity_train_frac: 0.80
+  lockbox_frac: 0.30
+  n_folds: 5
+  min_test_per_class: 300
+preprocess:
+  band_hz: [0.5, 40]
+  filter_order: 4
+  window_s: 2.5
+  beat_ms: [-250, 400]
+model:
+  emb_dim: 256
+  cnn_channels: [32, 64, 128]
+  kernel: 7
+  transformer_layers: 2
+  heads: 4
+arcface: {s: 30.0, m: 0.50}
+train: {epochs: 60, batch: 128, lr: 1.0e-3, weight_decay: 1.0e-4, warmup_frac: 0.05, patience: 10}
+leakage:
+  n_untrained: 5
+  untrained_seeds: [100, 101, 102, 103, 104]
+  tasks: [CD, MI, STTC, HYP]
+  primary: CD
+  C_grid: [0.001, 0.01, 0.1, 1, 10, 100]
+stats: {n_boot: 2000, n_perm: 1000, alpha: 0.05, ci_halfwidth_target: 0.03}
+seeds: [0, 1, 2]

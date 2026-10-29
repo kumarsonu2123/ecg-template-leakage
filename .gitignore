@@ -1,0 +1,21 @@
+# Data and large outputs never go to GitHub (PTB-XL / CODE-15% are downloaded from their sources)
+data/
+runs/
+results/
+gates/
+*.npz
+*.pt
+*.hdf5
+*.zip
+# Python / Jupyter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.pytest_cache/
+# LaTeX build files
+paper/*.aux
+paper/*.log
+paper/*.bbl
+paper/*.blg
+paper/*.out
+paper/*.pdf
